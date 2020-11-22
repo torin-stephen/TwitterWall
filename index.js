@@ -18,7 +18,7 @@ app.use(express.static('public'));
 
 io.on('connection', function (socket) {
 
-  T.get('search/tweets', { q: '#coding', count: 100 }, function (err, data, response) {
+  T.get('search/tweets', { q: '#beavers', count: 100 }, function (err, data, response) {
     var tweetArray = [];
     for (let index = 0; index < data.statuses.length; index++) {
       const tweet = data.statuses[index];
@@ -38,7 +38,7 @@ io.on('connection', function (socket) {
     io.emit('allTweet', tweetArray)
   })
 
-  var stream = T.stream('statuses/filter', { track: '#coding', language: 'en' })
+  var stream = T.stream('statuses/filter', { track: '#beavers', language: 'en' })
 
   stream.on('tweet', function (tweet) {
     io.emit('tweet', { 'tweet': tweet });
